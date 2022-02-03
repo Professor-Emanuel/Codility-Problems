@@ -1,0 +1,141 @@
+#include <algorithm>
+#include <vector>
+#include <iostream>
+
+
+// Problem 1
+#include <algorithm>
+#include <vector>
+#include <iostream>
+#include <iterator>
+
+int solution(vector<int> &A) {
+    // write your code in C++14 (g++ 6.2.0)
+
+    int lengthList = 1;
+
+    //Edge case: vector contains only one element
+    if(A.size() == 1){
+        return 1;
+    }
+
+    std::vector<int>::iterator it = A.begin();
+    while(it != A.end() && *it != -1){
+        lengthList++;
+        it = std::next(A.begin(), *it);
+    }
+
+    return lengthList;
+}
+
+
+// Problema 2
+#include <algorithm>
+#include <vector>
+#include <iostream>
+#include <iterator>
+
+int solution(vector<int> &A) {
+    // write your code in C++14 (g++ 6.2.0)
+    //Edge case: vector contains only one element
+    int max = 1;
+    int len = 1;
+    int maxIndex = 0;
+    int n = A.size();
+
+    for(int i=1; i<n; i++){
+        if(A[i] > A[i-1]){
+            len++;
+        } 
+        else{
+            if(max < len){
+                max = len;
+                maxIndex = i - max;
+            }
+        
+        len = 1;
+
+        }
+    }
+
+    if (max < len){
+        max = len;
+        maxIndex = n - max;
+    }
+    
+    return maxIndex;
+}
+
+
+// Problema 3
+#include <algorithm>
+#include <vector>
+#include <iostream>
+#include <iterator>
+#include <cstdlib>
+
+int solution(vector<int> &A) {
+    // write your code in C++14 (g++ 6.2.0)
+    int n = A.size();
+    int Sum = 0;
+    int M = 0;
+    int maxDeviation = 0;
+    int deviation = 0;
+    int indexOfMaxDeviation = 0;
+    std::vector<int>::iterator it = A.begin();
+
+    //Edge case: Empty vector
+    if(A.size() == 0){
+        return -1;
+    }
+
+    while( it != A.end() ){
+        Sum += *it;
+        it++;
+    }
+
+    M = Sum/n;
+
+    it = A.begin();
+    for(unsigned int i=0; i<A.size(); i++){
+        deviation = abs(A.at(i) - M);
+        if(deviation > maxDeviation){
+            maxDeviation = deviation;
+            indexOfMaxDeviation = i;
+        }
+    }
+   
+    return indexOfMaxDeviation;
+}
+
+
+// Problema 4
+#include <algorithm>
+#include <vector>
+#include <iostream>
+#include <iterator>
+#include <cstdlib>
+
+bool solution(vector<int> &A){
+	
+	vector<int> B(A) ;
+	sort(B.begin(), B.end());
+
+	int c = 0;
+	for(int i=0; i<n; i++){
+		if(A[i] != B[i]){
+			c++;
+		}
+	}
+
+	if( c==0 || c == 2)
+		return true;
+	else
+		return false;
+}
+
+
+
+
+
+
